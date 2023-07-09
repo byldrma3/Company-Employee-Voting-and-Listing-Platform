@@ -36,7 +36,7 @@ npm install
 npm start
 ```
 
-After following these steps, the application will start running on your local server. You can view the application by visiting `http://localhost:3000` in your browser.
+After following these steps, the application will start running on your local server. You can view the application by visiting `http://localhost:5173` in your browser.
 
 ## Contributing
 
