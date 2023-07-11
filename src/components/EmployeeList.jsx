@@ -10,6 +10,7 @@ const GET_EMPLOYEES = gql`
 			firstName
 			lastName
 			image
+			votes
 		}
 	}
 `;
@@ -21,6 +22,9 @@ const EmployeeList = () => {
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error :</p>;
+
+	const employee = [...data.employees];
+	employee.sort((a, b) => b.votes - a.votes);
 
 	const handleVote = (employee) => {
 		dispatch(increment(employee));
@@ -34,14 +38,14 @@ const EmployeeList = () => {
 		<div className='employee-list'>
 			<h1>Employee List</h1>
 			<ul>
-				{data.employees.map((employee) => (
+				{employee.map((employee) => (
 					<li key={employee.id} className='employee-card'>
 						<Link to={`/employee/${employee.id}`}>
 							<div className='employee-img'>
 								<img src={employee.image} alt='Employee' />
 							</div>
 							<p>
-								{employee.firstName} {employee.lastName}
+								{employee.firstName} {employee.lastName} ({employee.votes})
 							</p>
 						</Link>
 						<div className='button-group'>
